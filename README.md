@@ -8,6 +8,7 @@ Solution to Temper users onboarding flow analysis challenge, The solution compri
 * Switch into project directory `cd temper-onboarding`
 * start app: `docker-compose up`
 * Direct your browser to 'http://localhost/'
+* server app is running on 'http://localhost:8080'
 
 **Note**: I asummed you have docker running on your system ):
 ### Let me see behind the curtain
@@ -21,6 +22,8 @@ Solution to Temper users onboarding flow analysis challenge, The solution compri
 
 * rename docker-compose-dev.yml to docker-compose.yml
 * start app: `docker-compose up`
+* Direct your browser to 'http://localhost/'
+* server app is running on 'http://localhost:8080'
 
 #### Run Test
 *Windows system: `docker run --rm -it -v \
