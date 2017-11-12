@@ -1,0 +1,41 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: onboarding-backend/docker/Dockerfile
+    image: ossaijad/tob:latest
+    networks:
+     - appnet
+    volumes:
+      - ./onboarding-backend/application:/var/www/html
+  backend-nginx:
+    build:
+      context: .
+      dockerfile: gateway/docker/Dockerfile
+    image: ossaijad/tog:latest
+    ports:
+     - "8080:80"
+    networks:
+     - appnet
+    depends_on:
+      - backend
+    volumes:
+      - ./onboarding-backend/application:/var/www/html
+  frontend:
+    build:
+      context: .
+      dockerfile: onboarding-frontend/docker/Dockerfile
+    image: ossaijad/tof
+    ports: 
+      - '80:4000'
+    networks:
+      - appnet
+    depends_on:
+      - backend-nginx
+    volumes:
+      - ./onboarding-frontend:/home/app/frontend
+      - /home/app/frontend/node_modules
+networks:
+  appnet:
+    driver: "bridge"

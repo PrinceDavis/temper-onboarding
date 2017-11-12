@@ -1,0 +1,25 @@
+version: '3'
+services:
+  backend:
+    image: ossaijad/tob:latest
+    networks:
+     - appnet
+  backend-nginx:
+    image: ossaijad/tog:latest
+    ports:
+     - "8080:80"
+    networks:
+     - appnet
+    depends_on:
+      - backend
+  frontend:
+    image: ossaijad/tof
+    ports: 
+      - '80:4000'
+    networks:
+      - appnet
+    depends_on:
+      - backend-nginx
+networks:
+  appnet:
+    driver: "bridge"
